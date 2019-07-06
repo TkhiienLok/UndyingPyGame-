@@ -50,9 +50,6 @@ class Menu:
         # pygame.display.flip()
 
         self.buttons.append(button)
-
-        self.buttons[self.active_button].active = True
-
         self.draw()
 
     def draw(self):
@@ -73,12 +70,11 @@ class Menu:
                 self.active_button = (self.active_button - 1) % (-1 * len(self.buttons))
                 for button1 in self.buttons:
                     button1.active = False
-                self.buttons[self.active_button].active = True
             elif key == pygame.K_RIGHT:
                 self.active_button = (self.active_button + 1) % (-1 * len(self.buttons))
                 for button1 in self.buttons:
                     button1.active = False
-                self.buttons[self.active_button].active = True
+            self.buttons[self.active_button].active = True
         self.draw()
 
 
@@ -104,6 +100,7 @@ while running:
 
             if event.key == pygame.K_s:
                 my_menu.activated = True
+                my_menu.buttons[my_menu.active_button].active = True
 
             if event.key == pygame.K_LEFT:
                 my_menu.control_menu(event.key)
